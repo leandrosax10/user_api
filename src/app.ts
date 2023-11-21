@@ -1,7 +1,7 @@
-import express from "express";
-import cors from "cors";
-import routes from "./routes";
-import connection from "./config/database";
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
+import connection from './config/database';
 
 const app = express();
 
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 connection
   .then(() => {
-    console.log("Banco de dados conectado");
+    console.log('Banco de dados conectado');
     app.listen(PORT, () => {
       console.log(`App Rodando na porta: ${PORT}`);
     });

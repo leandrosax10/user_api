@@ -1,6 +1,6 @@
-import { IUser } from "../models/user.models";
-import userRepository from "../repository/user.repository";
-import dotenv from "dotenv";
+import { IUser } from '../models/user.models';
+import userRepository from '../repository/user.repository';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
