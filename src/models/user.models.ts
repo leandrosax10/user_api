@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import mongoose from 'mongoose';
+import { Schema } from "mongoose";
+import mongoose from "mongoose";
 export interface IUser {
   nome: string;
   email: string;
@@ -33,4 +33,4 @@ export const userSchema = new Schema<IUser>({
   },
 });
 
-export const User = mongoose.model<IUser>('User', userSchema);
+export const User = mongoose.model<IUser>("User", userSchema);

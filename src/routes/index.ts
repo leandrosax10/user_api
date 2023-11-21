@@ -1,5 +1,5 @@
 import Router from "express";
-import usersRouter from "./user.router"
+import usersRouter from "./user.router";
 
 const router = Router();
 
@@ -8,6 +8,6 @@ const router = Router();
 return res.send('Funcionando');
 }) */
 
-router.use('/users', usersRouter);
+router.use("/users", usersRouter);
 
 export default router;
