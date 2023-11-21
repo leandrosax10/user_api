@@ -16,13 +16,13 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 //deletar
-router.delete("/remove/_id", async (req: Request, res: Response) => {
-  const user = await userService.getById(req.params.id);
+router.delete("/remove/:document", async (req: Request, res: Response) => {
+  const user = await userService.getByDocument(req.params.document);
   if (!user && user !== null && user !== undefined)
     return res.status(400).send({ message: "Usuário não encontrado!" });
 
   try {
-    await userService.remove(req.params.id);
+    await userService.remove(req.params.document);
     res.status(200).send({ message: "Usuário removido com sucesso!" });
   } catch (error: any) {
     res.status(400).send({ message: error.message });
@@ -31,12 +31,12 @@ router.delete("/remove/_id", async (req: Request, res: Response) => {
 
 //alterar
 router.put("/:_id", async (req: Request, res: Response) => {
-  const user = await userService.getById(req.params.id);
+  const user = await userService.getByDocument(req.params.document);
   if (!user && user !== null && user !== undefined)
     return res.status(400).send({ message: "Usuário não encontrado!" });
 
   try {
-    await userService.update(req.params.id, req.body);
+    await userService.update(req.params.document, req.body);
     res.status(200).send({ message: "Usuário alterado com sucesso!" });
   } catch (error: any) {
     res.status(400).send({ message: error.message });

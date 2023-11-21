@@ -1,25 +1,28 @@
 import { IUser } from "../models/user.models";
 import userRepository from "../repository/user.repository";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 class UserService {
   getAll() {
     return userRepository.getAll();
   }
   
-  getById(_id: string) {
-    return userRepository.getById(_id);
+  getByDocument(document: string) {
+    return userRepository.getByDocument(document);
   }
 
-  create(user: IUser) {
+  async create(user: IUser) {
     return userRepository.create(user);
   }
 
-  update(_id: string, user: Partial<IUser>) {
-    return userRepository.update(_id, user);
+  update(document: string, user: Partial<IUser>) {
+    return userRepository.update(document, user);
   }
 
-  remove(_id: string) {
-    return userRepository.remove(_id);
+  remove(document: string) {
+    return userRepository.remove(document);
   }
 }
 

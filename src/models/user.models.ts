@@ -1,20 +1,21 @@
 import { Schema } from "mongoose";
 import mongoose from "mongoose";
+
 export interface IUser {
   nome: string;
   email: string;
   senha: string;
-  telefones: [
-    {
-      numero: string;
-      ddd: string;
-    }
-  ];
+  telefones: Telefone[];
   createdAt?: string | Date;
   updateAt?: string | Date;
 }
 
- export const userSchema = new Schema <IUser>({
+export interface Telefone {
+  numero: string;
+  ddd: string;
+}
+
+export const userSchema = new Schema<IUser>({
   nome: {
     type: String,
   },
@@ -24,11 +25,7 @@ export interface IUser {
   senha: {
     type: String,
   },
-  telefones: [
-    {
-      type: String,
-    },
-  ],
+  telefones: [{ numero: String, ddd: String }],
   createdAt: {
     type: Date,
     default: new Date(),
@@ -37,6 +34,6 @@ export interface IUser {
     type: Date,
     default: new Date(),
   },
-}); 
+});
 
-export const User = mongoose.model<IUser>('User', userSchema);
+export const User = mongoose.model<IUser>("User", userSchema);

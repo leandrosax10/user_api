@@ -5,8 +5,8 @@ class UserRepository {
     return User.find();
   }
 
-  getById(_id: string) {
-    return User.findOne({ id: _id });
+  getByDocument(document: string) {
+    return User.findOne({ document: document });
   }
 
   create(user: IUser) {
