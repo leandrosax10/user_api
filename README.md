@@ -14,7 +14,6 @@
 
 ## Bibliotecas utilizadas
 
-* [Yup](#yup)
 * [Json Web Token](#jsonwebtoken)
  
  ## Inicialização:
