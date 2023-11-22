@@ -5,8 +5,8 @@ class UserRepository {
     return User.find();
   }
 
-  getByDocument(document: string) {
-    return User.findOne({ document: document });
+  getByEmail(email: string) {
+    return User.findOne({ email: email });
   }
 
   create(user: IUser) {

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response, Router } from "express";
 import userService from "../services/user.service";
+import { authorizationMiddleware } from "../middlewares/authorization.middlewares";
 
 const router = Router();
 
 //listar
-router.get("/", async (req: Request, res: Response) => {
+router.get("/",authorizationMiddleware, async (req: Request, res: Response) => {
   const user = await userService.getAll();
   res.send(user);
 });
@@ -16,9 +17,22 @@ router.post("/", async (req: Request, res: Response) => {
   res.status(201).send({ message: "Usuário registrado com sucesso!" });
 });
 
+//Autenticação
+router.post("/authorization", async (req: Request, res: Response) => {
+  try {
+    const token = await userService.authorization(
+      req.body.email,
+      req.body.senha
+    );
+    res.status(200).send({ token });
+  } catch (error: any) {
+    res.status(401).send({ message: error.message });
+  }
+});
+
 //deletar
-router.delete("/remove/:document", async (req: Request, res: Response) => {
-  const user = await userService.getByDocument(req.params.document);
+router.delete("/remove/:document", authorizationMiddleware,async (req: Request, res: Response) => {
+  const user = await userService.getByEmail(req.params.document);
   if (!user && user !== null && user !== undefined)
     return res.status(400).send({ message: "Usuário não encontrado!" });
 
@@ -31,8 +45,8 @@ router.delete("/remove/:document", async (req: Request, res: Response) => {
 });
 
 //alterar
-router.put("/:_id", async (req: Request, res: Response) => {
-  const user = await userService.getByDocument(req.params.document);
+router.put("/:_id", authorizationMiddleware, async (req: Request, res: Response) => {
+  const user = await userService.getByEmail(req.params.document);
   if (!user && user !== null && user !== undefined)
     return res.status(400).send({ message: "Usuário não encontrado!" });
 
