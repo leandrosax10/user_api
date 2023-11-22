@@ -4,7 +4,6 @@ import { Request, Response, Router } from "express";
 import userService from "../services/user.service";
 import { authorizationMiddleware } from "../middlewares/authorization.middlewares";
 import { IUser, User} from "../models/user.models";
-import * as yup from "yup";
 
 const router = Router();
 
@@ -20,13 +19,14 @@ router.get(
 
 //criar
 router.post("/", async (req: Request, res: Response) => {
+  
   User.findOne({ email: req.body.email })
     .then((User) => {
       if (User) {
         res.status(400).send({ message: "Este Usuário já existe!" });
       }
     })
-    .catch((err: any) => {
+    .catch((err: Error) => {
       res.status(400).send({ message: "Erro interno" });
     });
 
