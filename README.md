@@ -1,6 +1,6 @@
 # User-api
 
- Este projeto é uma API Rest em NodeJs e Typescript desenvolvida para fins de aprendizado e portfólio.
+ Este projeto é uma API Rest em NodeJs e Typescript.
  
  ## Tecnologias utilizadas
  
